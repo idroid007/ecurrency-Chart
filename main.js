@@ -18,3 +18,22 @@ app.post("/",function(req,resp){
         resp.send(response)
     })
 })
+
+app.post("/conversion",function(req,resp){
+   // resp.sendFile(__dirname+"/index.html");
+
+   let options = {
+       url:"https://apiv2.bitcoinaverage.com/convert/global",
+       method:"GET", // default
+       qs:{
+           amount:req.body.amount,
+           from:req.body.from,
+           to:req.body.to
+       }
+   }
+
+    request(options,(error,response,body)=>{
+        resp.send(body)
+    })
+})
+
